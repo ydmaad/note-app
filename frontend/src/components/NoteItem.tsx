@@ -3,12 +3,16 @@ import type { Note } from "../types";
 import { IoIosCreate } from "react-icons/io";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { HiArchive } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { deleteNoteFromServer } from "../store/notesSlice";
+import type { AppDispatch } from "../store";
 
 interface NoteItemProps {
   note: Note;
 }
 
 const NoteItem = ({ note }: NoteItemProps) => {
+  const dispatch = useDispatch<AppDispatch>();
   // 노트별 배경색
   const getColorClass = (color: string) => {
     switch (color) {
@@ -23,6 +27,10 @@ const NoteItem = ({ note }: NoteItemProps) => {
       default:
         return "bg-gray-200";
     }
+  };
+
+  const handleNoteDelete = () => {
+    dispatch(deleteNoteFromServer(note.id));
   };
 
   // 작성일
@@ -77,7 +85,7 @@ const NoteItem = ({ note }: NoteItemProps) => {
           <div className="flex justify-between gap-2 cursor-pointer">
             <IoIosCreate />
             <HiArchive />
-            <RiDeleteBinFill />
+            <RiDeleteBinFill onClick={handleNoteDelete} />
           </div>
         </div>
       </div>
