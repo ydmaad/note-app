@@ -64,6 +64,11 @@ const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
     }
   };
 
+  // 태그 삭제
+  const removeTag = (tagToRemove: string) => {
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
+
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -84,14 +89,30 @@ const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
             className="flex-1 resize-none border border-gray-300 rounded mb-3 p-2 focus:outline-none"
           />
 
-          <input
-            type="text"
-            value={tagInput}
-            placeholder="# tag"
-            onChange={(e) => setTagInput(e.target.value)}
-            className="mb-3 focus:outline-none"
-            onKeyDown={(e) => activeEnter(e)}
-          />
+          <div className="w-full">
+            {tags.map((tag, index) => (
+              <span
+                key={index}
+                className="text-gray-400 border-b-2 border-gray-400 mr-2"
+              >
+                #{tag}
+                <button
+                  onClick={() => removeTag(tag)}
+                  className="ml-1 cursor-pointer"
+                >
+                  x
+                </button>
+              </span>
+            ))}
+            <input
+              type="text"
+              value={tagInput}
+              placeholder="# tag"
+              onChange={(e) => setTagInput(e.target.value)}
+              className="mb-3 focus:outline-none"
+              onKeyDown={(e) => activeEnter(e)}
+            />
+          </div>
 
           <div className="flex justify-between">
             {/* 배경색 선택 */}
