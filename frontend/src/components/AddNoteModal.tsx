@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import { useDispatch } from "react-redux";
-import { addNote } from "../store/notesSlice";
+import { addNoteToServer } from "../store/notesSlice";
 import type { Note } from "../types";
+import type { AppDispatch } from "../store";
 
 interface AddNoteModalProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ interface AddNoteModalProps {
 }
 
 const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [noteColor, setNoteColor] = useState("white");
@@ -27,18 +28,16 @@ const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
       return alert("내용을 입력해주세요");
     }
 
-    const newNote: Note = {
-      id: Date.now().toString(),
+    const newNote: Omit<Note, "id" | "createAt"> = {
       title: title.trim(),
       content: content.trim(),
       noteColor: noteColor,
       priority: "low",
       tags: tags,
       status: "normal",
-      createAt: new Date(),
     };
 
-    dispatch(addNote(newNote));
+    dispatch(addNoteToServer(newNote));
     setTitle("");
     setContent("");
     setNoteColor("white");
