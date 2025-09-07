@@ -33,6 +33,17 @@ export const fetchNotesFromServer = createAsyncThunk(
   }
 );
 
+// 백엔드에서 노트 삭제하는 비동기 액션
+export const deleteNoteFromServer = createAsyncThunk(
+  "notes/deleteNoteFromServer",
+  async (noteId: string) => {
+    const response = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
+      method: "DELETE",
+    });
+    return response.json();
+  }
+);
+
 // createSlice: Redux slice 생성 - 노트관련 상태와 액션들을 관리
 const notesSlice = createSlice({
   name: "notes", // slice 이름(Redux DevTools에서 보임)
@@ -53,10 +64,26 @@ const notesSlice = createSlice({
         // 백엔드에서 받은 새 노트를 state에 추가
         state.notes.push(action.payload);
       })
+      // 노트 추가 요청이 실패했을 때
+      .addCase(addNoteToServer.rejected, (state, action) => {
+        console.log("노트 추가 실페::::", action.error);
+      })
       // 노트 목록 조회 요청이 성공했을 때
       .addCase(fetchNotesFromServer.fulfilled, (state, action) => {
         // 백엔드에서 받은 전체 노트 배열로 state 교체
         state.notes = action.payload;
+      })
+      // 노트 목록 조회 요청이 실패했을 때
+      .addCase(fetchNotesFromServer.rejected, (state, action) => {
+        console.log("노트 목록 조회 실페::::", action.error);
+      })
+      .addCase(deleteNoteFromServer.fulfilled, (state, action) => {
+        // 삭제된 노트의 id를 받아서 배열에서 제거
+        const deleteId = action.payload.id;
+        state.notes = state.notes.filter((note) => note.id !== deleteId);
+      })
+      .addCase(deleteNoteFromServer.rejected, (state, action) => {
+        console.log("노트 삭제 실패:::::", action.error);
       });
   },
 });
