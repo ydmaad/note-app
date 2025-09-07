@@ -26,7 +26,7 @@ const NoteItem = ({ note }: NoteItemProps) => {
   };
 
   // 작성일
-  const createdDate = note.createAt;
+  const createdDate = new Date(note.createAt);
   // 날짜 - 한국식
   const datePart = createdDate.toLocaleDateString("ko-KR");
   // 시간 - AM/PM
