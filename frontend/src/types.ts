@@ -6,5 +6,5 @@ export interface Note {
   priority: "high" | "low";
   tags: string[];
   status: "normal" | "archived" | "trashed";
-  createAt: Date;
+  createAt: string;
 }
