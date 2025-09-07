@@ -68,6 +68,18 @@ app.post("/api/notes", (req, res) => {
   res.json(newNote);
 });
 
+// 노트 삭제 API
+app.delete("/api/notes/:id", (req, res) => {
+  // 경로 파라미터 받기
+  const noteId = req.params.id;
+  // 배열에서 해당 노트 제거
+  notes = notes.filter((note) => note.id !== noteId);
+  // 파일에 변경사항 저장
+  saveNotesToFile(notes);
+  // 응답 메시지 전달
+  res.json({ message: "노트가 삭제되었습니다.", id: noteId });
+});
+
 // 서버 시작 //
 app.listen(PORT, () => {
   console.log(`서버가 포트 ${PORT}에서 실행중입니다!`);
