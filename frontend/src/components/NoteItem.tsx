@@ -38,9 +38,30 @@ const NoteItem = ({ note }: NoteItemProps) => {
 
   // 노트 삭제 핸들러
   const handleNoteDelete = () => {
-    dispatch(deleteNoteFromServer(note.id));
+    if (note.status === "trashed") {
+      // 이미 휴지통에 있으면 확인 후 완전 삭제
+      if (
+        window.confirm(
+          "정말로 영구 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+        )
+      ) {
+        dispatch(deleteNoteFromServer(note.id));
+      }
+    } else {
+      // 일반/아카이브 상태면 휴지통으로 이동
+      dispatch(
+        updateNoteFromServer({
+          id: note.id,
+          updateData: { status: "trashed" },
+        })
+      );
+    }
   };
 
+  // trash 상태에 따라 색상 변경
+  const getTrashIconColor = () => {
+    return note.status === "trashed" ? "text-red-500" : "text-gray-400";
+  };
   // 노트 수정 모달 닫기 핸들러
   const closeEditModal = () => {
     setIsEditModalOpen(false);
@@ -125,7 +146,10 @@ const NoteItem = ({ note }: NoteItemProps) => {
           <div className="flex justify-between gap-2 cursor-pointer">
             <IoIosCreate onClick={() => setIsEditModalOpen(true)} />
             <HiArchive onClick={handleArchivedNote} />
-            <RiDeleteBinFill onClick={handleNoteDelete} />
+            <RiDeleteBinFill
+              onClick={handleNoteDelete}
+              className={`cursor-pointer hover:text-red-500 ${getTrashIconColor()}`}
+            />
           </div>
         </div>
       </div>
