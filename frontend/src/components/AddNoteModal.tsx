@@ -99,6 +99,7 @@ const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
               >
                 #{tag}
                 <button
+                  type="button"
                   onClick={() => removeTag(tag)}
                   className="ml-1 cursor-pointer"
                 >
