@@ -67,6 +67,19 @@ const NoteItem = ({ note }: NoteItemProps) => {
       })
     );
   };
+
+  // status를 archived로 변경하는 함수
+  const handleArchivedNote = () => {
+    const newStatus = note.status === "archived" ? "normal" : "archived";
+    dispatch(
+      updateNoteFromServer({
+        id: note.id,
+        updateData: {
+          status: newStatus,
+        },
+      })
+    );
+  };
   return (
     <div
       key={note.id}
@@ -111,7 +124,7 @@ const NoteItem = ({ note }: NoteItemProps) => {
           <p className="text-xs">{`${datePart}${" "}${timePart}`}</p>
           <div className="flex justify-between gap-2 cursor-pointer">
             <IoIosCreate onClick={() => setIsEditModalOpen(true)} />
-            <HiArchive />
+            <HiArchive onClick={handleArchivedNote} />
             <RiDeleteBinFill onClick={handleNoteDelete} />
           </div>
         </div>
