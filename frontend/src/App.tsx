@@ -10,17 +10,35 @@ const App = () => {
   const notes = useSelector((state: RootState) => state.notes.notes);
   const dispatch = useDispatch<AppDispatch>();
   const [selectedMenu, setSelectedMenu] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dispatch(fetchNotesFromServer());
   }, [dispatch]);
 
-  // 메뉴,태그 필터링 로직
+  // 메뉴,태그,검색 필터링 로직
   const filteredNotes = notes.filter((note) => {
-    if (selectedMenu === "all") return note.status === "normal";
-    if (selectedMenu === "archived") return note.status === "archived";
-    if (selectedMenu === "trashed") return note.status === "trashed";
-    return note.tags.includes(selectedMenu);
+    let passesMenuFilter = false;
+    if (selectedMenu === "all") passesMenuFilter = note.status === "normal";
+    if (selectedMenu === "archived")
+      passesMenuFilter = note.status === "archived";
+    if (selectedMenu === "trashed")
+      passesMenuFilter = note.status === "trashed";
+    if (
+      !passesMenuFilter &&
+      selectedMenu !== "all" &&
+      selectedMenu !== "archived" &&
+      selectedMenu !== "trashed"
+    ) {
+      passesMenuFilter = note.tags.includes(selectedMenu);
+    }
+
+    const passesSearchFilter =
+      searchTerm === "" ||
+      note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      note.content.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return passesMenuFilter && passesSearchFilter;
   });
 
   return (
@@ -32,7 +50,7 @@ const App = () => {
         />
       </div>
       <div className="flex flex-1 flex-col">
-        <Header />
+        <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <MainContent notes={filteredNotes} />
       </div>
     </div>
