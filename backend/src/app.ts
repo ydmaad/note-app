@@ -80,6 +80,39 @@ app.delete("/api/notes/:id", (req, res) => {
   res.json({ message: "노트가 삭제되었습니다.", id: noteId });
 });
 
+// 노트 수정 API
+app.put("/api/notes/:id", (req, res) => {
+  // URL 경로에서 노트 ID 추출
+  const noteId = req.params.id;
+  // 요청 본문에서 수정할 데이터 추출(프론트엔드에서 보낸 새로운 노트 내용)
+  const updateData = req.body;
+
+  // notes 배열에서 해당 ID를 가진 노트의 인덱스 찾기
+  const noteIndex = notes.findIndex((note) => note.id === noteId);
+
+  // 만약 해당 노트를 찾지 못했다면
+  if (noteIndex === -1) {
+    // 404 상태코드와 함께 에러 메시지 응답
+    return res.status(404).json({ message: "노트를 찾을 수 없습니다." });
+  }
+
+  // 기존 노트와 새로운 데이터를 합쳐서 업데이트
+  notes[noteIndex] = {
+    // 기존 노트의 모든 속성 복사
+    ...notes[noteIndex],
+    // 새로운 데이터로 덮어쓰기(같은 속성이 있으면 새 값으로 교체)
+    ...updateData,
+    // 작성일은 변경하지 않음(원본 노트의 createAt 유지)
+    createAt: notes[noteIndex].createAt,
+  };
+
+  // 변경된 notes 배열을 JSON 파일에 저장
+  saveNotesToFile(notes);
+
+  // 수정된 노트 데이터를 응답으로 전송
+  res.json(notes[noteIndex]);
+});
+
 // 서버 시작 //
 app.listen(PORT, () => {
   console.log(`서버가 포트 ${PORT}에서 실행중입니다!`);
