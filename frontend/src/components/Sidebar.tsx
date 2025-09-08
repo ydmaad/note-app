@@ -46,15 +46,15 @@ const Sidebar = ({ selectedMenu, setSelectedMenu }: SidebarProps) => {
         </>
       )}
       <div
-        onClick={() => setSelectedMenu("archive")}
-        className={menuClick("archive")}
+        onClick={() => setSelectedMenu("archived")}
+        className={menuClick("archived")}
       >
         <HiArchive className="text-gray-400" />
         <span className="ml-3">archive</span>
       </div>
       <div
-        onClick={() => setSelectedMenu("trash")}
-        className={menuClick("trash")}
+        onClick={() => setSelectedMenu("trashed")}
+        className={menuClick("trashed")}
       >
         <RiDeleteBinFill className="text-gray-400" />
         <span className="ml-3">trash</span>

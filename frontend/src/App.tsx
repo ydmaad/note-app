@@ -18,8 +18,8 @@ const App = () => {
   // 메뉴,태그 필터링 로직
   const filteredNotes = notes.filter((note) => {
     if (selectedMenu === "all") return note.status === "normal";
-    if (selectedMenu === "archive") return note.status === "archived";
-    if (selectedMenu === "trash") return note.status === "trashed";
+    if (selectedMenu === "archived") return note.status === "archived";
+    if (selectedMenu === "trashed") return note.status === "trashed";
     return note.tags.includes(selectedMenu);
   });
 

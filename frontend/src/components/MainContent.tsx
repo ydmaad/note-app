@@ -8,11 +8,9 @@ interface MainContentProps {
 const MainContent = ({ notes }: MainContentProps) => {
   return (
     <div>
-      {notes
-        .filter((note) => note.status === "normal")
-        .map((note) => (
-          <NoteItem key={note.id} note={note} />
-        ))}
+      {notes.map((note) => (
+        <NoteItem key={note.id} note={note} />
+      ))}
     </div>
   );
 };
