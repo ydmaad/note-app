@@ -4,7 +4,10 @@ import { IoIosCreate } from "react-icons/io";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { HiArchive } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { deleteNoteFromServer } from "../store/notesSlice";
+import {
+  deleteNoteFromServer,
+  updateNoteFromServer,
+} from "../store/notesSlice";
 import type { AppDispatch } from "../store";
 import { useState } from "react";
 import EditNoteModal from "./EditNoteModal";
@@ -53,6 +56,17 @@ const NoteItem = ({ note }: NoteItemProps) => {
     minute: "2-digit",
     hour12: true,
   });
+
+  // 중요도 핀 토글 함수
+  const handlePriorityToggle = () => {
+    const newPriority = note.priority === "high" ? "low" : "high";
+    dispatch(
+      updateNoteFromServer({
+        id: note.id,
+        updateData: { priority: newPriority },
+      })
+    );
+  };
   return (
     <div
       key={note.id}
@@ -65,7 +79,10 @@ const NoteItem = ({ note }: NoteItemProps) => {
         <h1 className="text-lg items-center font-semibold mb-2">
           {note.title}
         </h1>
-        <span className="px-2 py-1 rounded-full cursor-pointer">
+        <span
+          onClick={handlePriorityToggle}
+          className="px-2 py-1 rounded-full cursor-pointer"
+        >
           {note.priority === "high" ? (
             <BsPinFill className="text-red-500" />
           ) : (
