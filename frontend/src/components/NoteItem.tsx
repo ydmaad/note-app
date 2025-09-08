@@ -6,6 +6,8 @@ import { HiArchive } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { deleteNoteFromServer } from "../store/notesSlice";
 import type { AppDispatch } from "../store";
+import { useState } from "react";
+import EditNoteModal from "./EditNoteModal";
 
 interface NoteItemProps {
   note: Note;
@@ -13,6 +15,8 @@ interface NoteItemProps {
 
 const NoteItem = ({ note }: NoteItemProps) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   // 노트별 배경색
   const getColorClass = (color: string) => {
     switch (color) {
@@ -29,8 +33,14 @@ const NoteItem = ({ note }: NoteItemProps) => {
     }
   };
 
+  // 노트 삭제 핸들러
   const handleNoteDelete = () => {
     dispatch(deleteNoteFromServer(note.id));
+  };
+
+  // 노트 수정 모달 닫기 핸들러
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
   };
 
   // 작성일
@@ -83,12 +93,19 @@ const NoteItem = ({ note }: NoteItemProps) => {
         <div className="flex justify-between">
           <p className="text-xs">{`${datePart}${" "}${timePart}`}</p>
           <div className="flex justify-between gap-2 cursor-pointer">
-            <IoIosCreate />
+            <IoIosCreate onClick={() => setIsEditModalOpen(true)} />
             <HiArchive />
             <RiDeleteBinFill onClick={handleNoteDelete} />
           </div>
         </div>
       </div>
+      {isEditModalOpen && (
+        <EditNoteModal
+          isOpen={isEditModalOpen}
+          onClose={closeEditModal}
+          note={note}
+        />
+      )}
     </div>
   );
 };
