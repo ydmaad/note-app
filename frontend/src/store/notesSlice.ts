@@ -44,6 +44,21 @@ export const deleteNoteFromServer = createAsyncThunk(
   }
 );
 
+// 백엔드에서 노트 수정하는 비동기 액션
+export const updateNoteFromServer = createAsyncThunk(
+  "notes/updateNoteFromServer",
+  async ({ id, updateData }: { id: string; updateData: Partial<Note> }) => {
+    const response = await fetch(`http://localhost:3000/api/notes/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    });
+    return response.json();
+  }
+);
+
 // createSlice: Redux slice 생성 - 노트관련 상태와 액션들을 관리
 const notesSlice = createSlice({
   name: "notes", // slice 이름(Redux DevTools에서 보임)
@@ -84,6 +99,18 @@ const notesSlice = createSlice({
       })
       .addCase(deleteNoteFromServer.rejected, (state, action) => {
         console.log("노트 삭제 실패:::::", action.error);
+      })
+      .addCase(updateNoteFromServer.fulfilled, (state, action) => {
+        const updateNote = action.payload;
+        const noteIndex = state.notes.findIndex(
+          (note) => note.id === updateNote.id
+        );
+        if (noteIndex !== -1) {
+          state.notes[noteIndex] = updateNote;
+        }
+      })
+      .addCase(updateNoteFromServer.rejected, (state, action) => {
+        console.log("노트 수정 실패:::::", action.error);
       });
   },
 });
