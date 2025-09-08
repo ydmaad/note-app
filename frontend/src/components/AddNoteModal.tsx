@@ -57,6 +57,9 @@ const AddNoteModal = ({ isOpen, onClose }: AddNoteModalProps) => {
 
   // 엔터키로 태그 추가
   const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // 한글 조합 중인지 확인
+    if (e.nativeEvent.isComposing) return;
+
     if (e.key === "Enter") {
       e.preventDefault();
       addTag();
