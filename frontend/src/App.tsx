@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div className="h-screen flex flex-row">
-      <div className="w-64 flex-shrink-0">
+      <div className="min-w-60 flex-shrink-0">
         <Sidebar />
       </div>
       <div className="flex flex-1 flex-col">

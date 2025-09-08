@@ -9,10 +9,10 @@ const Header = () => {
 
   return (
     <header>
-      <div className="flex justify-between">
-        <h1>Note</h1>
+      <div className="flex justify-between border-b-2 border-gray-300">
+        <h1 className="text-3xl p-3">Note</h1>
         <button onClick={openModal}>
-          <FaPlus />
+          <FaPlus className="text-3xl m-3" />
         </button>
       </div>
       <AddNoteModal isOpen={isModalOpen} onClose={closeModal} />
