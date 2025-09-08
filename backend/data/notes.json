@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1757328501001",
+    "title": "장보기",
+    "content": "마늘, 양파, 파스타면, 토마토파스타 소스",
+    "noteColor": "white",
+    "priority": "low",
+    "tags": ["장보기", "음식", "일상"],
+    "status": "normal",
+    "createAt": "2025-09-08T10:36:44.443Z"
+  },
+  {
+    "id": "1757328501002",
+    "title": "헬스장 가기",
+    "content": "레그프레스,\n체스트프레스,\n렛풀다운",
+    "noteColor": "pink",
+    "priority": "low",
+    "tags": ["운동", "헬스", "일상"],
+    "status": "normal",
+    "createAt": "2025-09-08T10:38:34.425Z"
+  },
+  {
+    "id": "1757328501003",
+    "title": "블로그 글쓰기",
+    "content": "다이나믹 프로그래밍 정리,\n피보나치 예제 코드 추가",
+    "noteColor": "yellow",
+    "priority": "high",
+    "tags": ["공부", "개발", "블로그"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:00:00.000Z"
+  },
+  {
+    "id": "1757328501004",
+    "title": "저녁 메뉴 고민",
+    "content": "김치찌개, 된장찌개, 제육볶음 중 하나 선택",
+    "noteColor": "blue",
+    "priority": "low",
+    "tags": ["음식", "일상", "장보기"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:05:00.000Z"
+  },
+  {
+    "id": "1757328501005",
+    "title": "독서",
+    "content": "책: 해리포터와 불의 잔,\n50쪽 이상 읽기",
+    "noteColor": "white",
+    "priority": "low",
+    "tags": ["취미", "일상", "공부"],
+    "status": "archived",
+    "createAt": "2025-09-08T15:10:00.000Z"
+  },
+  {
+    "id": "1757328501006",
+    "title": "프로그래밍 연습",
+    "content": "React 상태관리 복습,\nRedux 예제 만들어보기",
+    "noteColor": "pink",
+    "priority": "high",
+    "tags": ["공부", "개발", "블로그"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:15:00.000Z"
+  },
+  {
+    "id": "1757328501007",
+    "title": "친구 만나기",
+    "content": "카페에서 3시 약속,\n노트북 가져가기",
+    "noteColor": "blue",
+    "priority": "low",
+    "tags": ["친구", "일정", "일상"],
+    "status": "trashed",
+    "createAt": "2025-09-08T15:20:00.000Z"
+  },
+  {
+    "id": "1757328501008",
+    "title": "헬스 루틴",
+    "content": "데드리프트,\n벤치프레스,\n스쿼트",
+    "noteColor": "yellow",
+    "priority": "high",
+    "tags": ["운동", "헬스", "건강"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:25:00.000Z"
+  },
+  {
+    "id": "1757328501009",
+    "title": "여행 준비",
+    "content": "비행기표 확인,\n짐 챙기기,\n카메라 충전",
+    "noteColor": "white",
+    "priority": "low",
+    "tags": ["일정", "친구", "취미"],
+    "status": "archived",
+    "createAt": "2025-09-08T15:30:00.000Z"
+  },
+  {
+    "id": "1757328501010",
+    "title": "장보기 2차",
+    "content": "우유, 계란, 사과, 고구마",
+    "noteColor": "pink",
+    "priority": "low",
+    "tags": ["장보기", "음식", "일상"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:35:00.000Z"
+  },
+  {
+    "id": "1757328501011",
+    "title": "스터디 모임",
+    "content": "알고리즘 문제 3개 풀기,\n코드 리뷰 준비",
+    "noteColor": "yellow",
+    "priority": "high",
+    "tags": ["공부", "개발", "블로그"],
+    "status": "trashed",
+    "createAt": "2025-09-08T15:40:00.000Z"
+  },
+  {
+    "id": "1757328501012",
+    "title": "주말 일정",
+    "content": "토요일 - 영화관 가기,\n일요일 - 집 청소",
+    "noteColor": "blue",
+    "priority": "low",
+    "tags": ["일상", "취미", "친구"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:45:00.000Z"
+  },
+  {
+    "id": "1757328501013",
+    "title": "영화 감상",
+    "content": "오늘 밤 9시부터 넷플릭스 영화 보기",
+    "noteColor": "yellow",
+    "priority": "low",
+    "tags": ["취미", "일상", "블로그"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:50:00.000Z"
+  },
+  {
+    "id": "1757328501014",
+    "title": "코딩 챌린지",
+    "content": "백준 알고리즘 문제 5개 풀기",
+    "noteColor": "pink",
+    "priority": "high",
+    "tags": ["공부", "개발", "블로그"],
+    "status": "normal",
+    "createAt": "2025-09-08T15:55:00.000Z"
+  },
+  {
+    "id": "1757328501015",
+    "title": "요가 수업",
+    "content": "저녁 7시 요가 강습 참여",
+    "noteColor": "white",
+    "priority": "low",
+    "tags": ["운동", "일상", "취미"],
+    "status": "normal",
+    "createAt": "2025-09-08T16:00:00.000Z"
+  },
+  {
+    "id": "1757328501016",
+    "title": "카페 공부",
+    "content": "카페에서 2시간 공부하기",
+    "noteColor": "blue",
+    "priority": "high",
+    "tags": ["공부", "일상", "블로그"],
+    "status": "normal",
+    "createAt": "2025-09-08T16:05:00.000Z"
+  },
+  {
+    "id": "1757328501017",
+    "title": "친구 생일 선물",
+    "content": "책과 초콜릿 준비",
+    "noteColor": "yellow",
+    "priority": "low",
+    "tags": ["친구", "일상", "장보기"],
+    "status": "normal",
+    "createAt": "2025-09-08T16:10:00.000Z"
+  },
+  {
+    "id": "1757328501018",
+    "title": "주간 회의",
+    "content": "팀 프로젝트 회의 준비,\n발표 자료 작성",
+    "noteColor": "pink",
+    "priority": "high",
+    "tags": ["일상", "공부", "개발"],
+    "status": "normal",
+    "createAt": "2025-09-08T16:15:00.000Z"
+  },
+  {
+    "id": "1757328501019",
+    "title": "간단 운동",
+    "content": "집에서 팔굽혀펴기 50회, 스쿼트 50회",
+    "noteColor": "white",
+    "priority": "low",
+    "tags": ["운동", "일상", "헬스"],
+    "status": "normal",
+    "createAt": "2025-09-08T16:20:00.000Z"
+  },
+  {
+    "id": "1757328501020",
+    "title": "영화 리뷰 작성",
+    "content": "오늘 본 영화 줄거리 정리 및 한 줄 감상 작성",
+    "noteColor": "blue",
+    "priority": "high",
+    "tags": ["블로그", "취미", "일상"],
+    "status": "normal",
+    "createAt": "2025-09-08T16:25:00.000Z"
+  }
+]
