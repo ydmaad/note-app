@@ -58,21 +58,23 @@ const App = () => {
   });
 
   return (
-    <div className="h-screen flex flex-row">
+    <div className="h-screen flex flex-row overflow-hidden">
       <div className="min-w-60 flex-shrink-0">
         <Sidebar
           selectedMenu={selectedMenu}
           setSelectedMenu={setSelectedMenu}
         />
       </div>
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden">
         <Header
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           sortBy={sortBy}
           setSortBy={setSortBy}
         />
-        <MainContent notes={sortedAndFilteredNotes} />
+        <div className="flex-1 overflow-y-auto scrollbar-hide">
+          <MainContent notes={sortedAndFilteredNotes} />
+        </div>
       </div>
     </div>
   );

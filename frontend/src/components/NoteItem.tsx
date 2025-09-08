@@ -106,7 +106,7 @@ const NoteItem = ({ note }: NoteItemProps) => {
       key={note.id}
       className={`${getColorClass(
         note.noteColor
-      )} p-4 rounded-md shadow-xl/20 w-72 h-60 flex flex-col m-5`}
+      )} p-4 rounded-md shadow-xl/20 w-full h-60 flex flex-col`}
     >
       {/* 제목 + 우측 핀 */}
       <div className="flex justify-between">
