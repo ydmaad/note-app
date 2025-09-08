@@ -5,9 +5,16 @@ import { useState } from "react";
 interface HeaderProps {
   searchTerm: string;
   setSearchTerm: (term: string) => void;
+  sortBy: string;
+  setSortBy: (sort: string) => void;
 }
 
-const Header = ({ searchTerm, setSearchTerm }: HeaderProps) => {
+const Header = ({
+  searchTerm,
+  setSearchTerm,
+  sortBy,
+  setSortBy,
+}: HeaderProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -32,6 +39,17 @@ const Header = ({ searchTerm, setSearchTerm }: HeaderProps) => {
           transition-all duration-300 ease-in-out
           focus:shadow-lg"
         />
+        <div className="flex justify-end">
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="p-1 border border-gray-300 rounded text-sm"
+          >
+            <option value="date">최신순</option>
+            <option value="title">제목순</option>
+            <option value="priority">우선순위순</option>
+          </select>
+        </div>
       </div>
     </header>
   );

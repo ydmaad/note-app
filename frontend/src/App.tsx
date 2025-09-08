@@ -11,6 +11,7 @@ const App = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedMenu, setSelectedMenu] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
     dispatch(fetchNotesFromServer());
@@ -41,6 +42,21 @@ const App = () => {
     return passesMenuFilter && passesSearchFilter;
   });
 
+  const sortedAndFilteredNotes = filteredNotes.sort((a, b) => {
+    if (sortBy === "date") {
+      return new Date(b.createAt).getTime() - new Date(a.createAt).getTime();
+    }
+    if (sortBy === "title") {
+      return a.title.localeCompare(b.title);
+    }
+    if (sortBy === "priority") {
+      if (a.priority === "high" && b.priority === "low") return -1;
+      if (a.priority === "low" && b.priority === "high") return 1;
+      return 0;
+    }
+    return 0;
+  });
+
   return (
     <div className="h-screen flex flex-row">
       <div className="min-w-60 flex-shrink-0">
@@ -50,8 +66,13 @@ const App = () => {
         />
       </div>
       <div className="flex flex-1 flex-col">
-        <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <MainContent notes={filteredNotes} />
+        <Header
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+        />
+        <MainContent notes={sortedAndFilteredNotes} />
       </div>
     </div>
   );
